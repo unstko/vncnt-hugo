@@ -16,9 +16,13 @@
             {{ with .Site.Params.email }}<a class="icon" href="mailto:{{ . }}" target="_blank" rel="noopener me">
               <i class="fas fa-envelope" title="email" aria-label="Send email."></i>
             </a>{{ end }}
-            {{ range $contact_key,  $contact_link := .Site.Params.contact }}<a class="icon" href="{{ $contact_link }}" target="_blank" rel="noopener me">
-              <i class="fab fa-{{ $contact_key }}" title="{{ $contact_key }}" aria-label="Go to {{ $contact_key }}."></i>
-            </a>{{ end }}
+            {{ range $fa_name, $contacts := .Site.Params.contact }}
+              {{ range $contact_key,  $contact_link := $contacts }}
+                <a class="icon" href="{{ $contact_link }}" target="_blank" rel="noopener me">
+                  <i class="{{ $fa_name }} fa-{{ $contact_key }}" title="{{ $contact_key }}" aria-label="Go to {{ $contact_key }}."></i>
+                </a>
+              {{ end }}
+            {{ end }}
           </h2>
           </div>
         </section>
